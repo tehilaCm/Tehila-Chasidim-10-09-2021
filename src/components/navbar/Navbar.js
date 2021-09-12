@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import $ from "jquery";
 
+import "./navbar.css"
+
 const Navbar = () => {
   const closeNav = () => {
     let display = $(".collapse").css("display");
@@ -12,12 +14,10 @@ const Navbar = () => {
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid">
-          <Link
-            className="navbar-brand"
-            to="/home"
-            onClick={() => closeNav()}
-          >
-            Weather
+          <Link className="navbar-brand nav-brand" to="/" onClick={() => closeNav()}>
+            <i>
+              <b>Weather</b>
+            </i>
           </Link>
           <button
             className="navbar-toggler"

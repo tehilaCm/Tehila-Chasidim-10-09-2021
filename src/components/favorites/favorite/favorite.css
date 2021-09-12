@@ -1,0 +1,19 @@
+.favorite {
+  width: 12rem;
+  text-align: center;
+}
+
+.favorite a {
+  text-decoration: none;
+  color: #525252;
+}
+
+.favorite .degreesFormat {
+  margin-bottom: 5px;
+}
+
+.favorite .trash-icon {
+  margin: 1rem auto;
+  color: red;
+  cursor: pointer;
+}

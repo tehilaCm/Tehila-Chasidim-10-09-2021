@@ -12,7 +12,7 @@ const DegreesFormat = () => {
 
   return (
     <div className="display-format">
-      <h6>Degrees Display Format:</h6>
+      <h5>Degrees Display Format:</h5>
       <button
         className={isCelsius ? "chosen-format" : ""}
         onClick={() => dispatch(actions.toggleIsCelsius())}

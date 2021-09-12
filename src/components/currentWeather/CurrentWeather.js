@@ -25,8 +25,8 @@ const CurrentWeather = ({ weather, city }) => {
 
   useEffect(() => {
     setFavorites(JSON.parse(localStorage.getItem("favorites")));
-    if (favorites) {
-      const res = favorites.find((item) => item === city);
+    if (favorites && favorites.length > 0) {
+      const res = favorites.find((item) => item.name === city.name);
       if (res) {
         setIsFavorite(true);
       } else {
@@ -46,7 +46,7 @@ const CurrentWeather = ({ weather, city }) => {
       localStorage.setItem("favorites", JSON.stringify(tmpFavorites));
       setIsFavorite(true);
     } else {
-      if (favorites) tmpFavorites = favorites.filter((item) => item != city);
+      if (favorites) tmpFavorites = favorites.filter((item) => item.name != city.name);
       localStorage.setItem("favorites", JSON.stringify(tmpFavorites));
       setIsFavorite(false);
     }
@@ -63,7 +63,7 @@ const CurrentWeather = ({ weather, city }) => {
           ) : (
             <FaRegHeart className="favorite-icon" />
           )}
-          <h1 className="city">{city}</h1>
+          <h1 className="city">{city.name}</h1>
           <p className="description">{weather.WeatherText}</p>
           <h1 className="degrees">
             {parseInt(degreesFormat.Value)}{" "}
