@@ -1,0 +1,55 @@
+.current-weather {
+  padding: 5px;
+
+  animation: zoomIn;
+  animation-duration: 1s;
+}
+.current-weather .weather {
+  width: 100%;
+  max-width: 18rem;
+  margin: 3rem auto;
+}
+
+.current-weather .card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.current-weather .icon {
+  background-color: #f7f7f7;
+  border-radius: 50%;
+  position: absolute;
+  top: -3rem;
+}
+
+.current-weather .favorite-icon {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  font-size: 20px;
+}
+
+.current-weather .red {
+  color: red;
+}
+
+.current-weather .city {
+  margin-top: 3.5rem;
+  color: #525252;
+}
+
+.current-weather .description {
+  color: #7d7d7d;
+}
+
+.current-weather .degrees {
+  color: #525252;
+  font-size: 40px;
+}
+
+.current-weather .degreesFormat {
+  margin-bottom: 10px;
+}

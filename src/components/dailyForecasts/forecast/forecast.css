@@ -1,0 +1,19 @@
+.forecast {
+  width: 12rem;
+}
+
+.forecast .card {
+  animation: zoomIn;
+  animation-duration: 1s;
+}
+
+.forecast .card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #525252;
+}
+
+.forecast .degreesFormat {
+  margin-bottom: 4px;
+}

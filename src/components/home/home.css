@@ -1,0 +1,47 @@
+.home .chosen-format {
+  background-color: #afadad;
+}
+
+.home .center {
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.home .search-form * {
+  height: 40px;
+  padding: 6px 12px;
+}
+
+.home .search-form {
+  margin-top: 5rem;
+  position: relative;
+  padding: 5px;
+  width: 100%;
+}
+
+.home .search-form input {
+  width: 100%;
+  background-color: #e4edfa;
+  border: none;
+  border-radius: 25px;
+  text-align: center;
+  outline: none;
+}
+
+.home .search-form .serach-icon {
+  padding: 0;
+  position: absolute;
+  left: 15px;
+}
+
+@media (min-width: 430px) {
+  .home .search-form {
+    padding: 0;
+    width: fit-content;
+  }
+
+  .home .search-form input {
+    width: 400px;
+  }
+}

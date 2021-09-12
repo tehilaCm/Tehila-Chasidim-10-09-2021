@@ -1,0 +1,13 @@
+.home .display-format button {
+  border: none;
+  border-radius: 10%;
+  margin: 5px;
+}
+
+.home .display-format svg {
+  margin-bottom: 3px;
+}
+
+.home .display-format {
+  margin: 2rem 0 0 2rem;
+}
