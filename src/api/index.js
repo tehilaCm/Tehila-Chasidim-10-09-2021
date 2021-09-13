@@ -1,6 +1,6 @@
 export const getCity = async (city) => {
   const base =
-    "http://dataservice.accuweather.com/locations/v1/cities/autocomplete";
+    "https://dataservice.accuweather.com/locations/v1/cities/autocomplete";
   const query = `?apikey=${process.env.REACT_APP_API_KEY}&q=${city}`;
 
   try {
@@ -14,7 +14,7 @@ export const getCity = async (city) => {
 };
 
 export const getCurrentWeather = async (key) => {
-  const base = "http://dataservice.accuweather.com/currentconditions/v1/";
+  const base = "https://dataservice.accuweather.com/currentconditions/v1/";
   const query = `${key}?apikey=${process.env.REACT_APP_API_KEY}`;
 
   try {
@@ -28,7 +28,7 @@ export const getCurrentWeather = async (key) => {
 };
 
 export const fiveDaysOfDailyForecasts = async (key) => {
-  const base = "http://dataservice.accuweather.com/forecasts/v1/daily/5day/";
+  const base = "https://dataservice.accuweather.com/forecasts/v1/daily/5day/";
   const query = `${key}?apikey=${process.env.REACT_APP_API_KEY}`;
 
   try {
@@ -43,7 +43,7 @@ export const fiveDaysOfDailyForecasts = async (key) => {
 
 export const geoPositionSearch = async (latLon) => {
   const base =
-    "http://dataservice.accuweather.com/locations/v1/cities/geoposition/search";
+    "https://dataservice.accuweather.com/locations/v1/cities/geoposition/search";
   const query = `?apikey=${process.env.REACT_APP_API_KEY}&q=${latLon}`;
   try {
     const response = await fetch(base + query);
