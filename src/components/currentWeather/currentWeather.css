@@ -16,10 +16,11 @@
   align-items: center;
   justify-content: center;
   position: relative;
+  background-color: var(--card-background-color);
 }
 
 .current-weather .icon {
-  background-color: #f7f7f7;
+  background-color: var(--weather-icon);
   border-radius: 50%;
   position: absolute;
   top: -3rem;
@@ -30,6 +31,7 @@
   top: 2rem;
   left: 2rem;
   font-size: 20px;
+  color: var(--favorite-heart-icon)
 }
 
 .current-weather .red {
@@ -38,15 +40,15 @@
 
 .current-weather .city {
   margin-top: 3.5rem;
-  color: #525252;
+  color: var(--card-text-color);
 }
 
 .current-weather .description {
-  color: #7d7d7d;
+  color: var(--weather-description-color);
 }
 
 .current-weather .degrees {
-  color: #525252;
+  color: var(--card-text-color);
   font-size: 40px;
 }
 

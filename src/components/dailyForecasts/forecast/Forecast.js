@@ -21,18 +21,20 @@ const Forecast = ({ forecast }) => {
     "Friday",
     "Saturday",
   ];
+  //get the date by spliting it fron time by T
   const d = new Date(date.split("T"));
   const dayName = days[d.getDay()];
 
-  const degreesF = Maximum.Value;
+  const degreesF = parseInt(Maximum.Value);
+  //convert fahrenheit to celsius
   const degreesC = parseInt((5 / 9) * (degreesF - 32));
 
   return (
     <div className="forecast">
       <div className="card">
         <div className="card-body">
-          <img src={iconSrc} />
-          <h6>{dayName}</h6>
+          <img src={iconSrc} className="icon" />
+          <h6 className="day-name">{dayName}</h6>
           {isCelsius ? (
             <h6>
               {degreesC} <RiCelsiusFill className="degreesFormat" />

@@ -3,15 +3,27 @@
 }
 
 .forecast .card {
+  background-color: var(--card-background-color);
+
   animation: zoomIn;
   animation-duration: 1s;
+}
+
+.forecast .icon {
+  background-color: var(--weather-icon);
+  border-radius: 50%;
+  width: 80px;
+}
+
+.forecast .day-name {
+  margin-top: 1rem;
 }
 
 .forecast .card-body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: #525252;
+  color: var(--card-text-color);
 }
 
 .forecast .degreesFormat {

@@ -21,32 +21,20 @@ const Favorite = ({ favorite, favorites, setFavorites }) => {
       ? currentWeather.Temperature.Metric.Value
       : currentWeather.Temperature.Imperial.Value);
 
+  useEffect(() => {
+    loadCurrentWeather();
+  }, []);
+
   const loadCurrentWeather = async () => {
     try {
-      // const weather = await getCurrentWeather(favorite.key);
-      const weather = {
-        EpochTime: 1631270100,
-        HasPrecipitation: false,
-        IsDayTime: true,
-        Link: "http://www.accuweather.com/en/il/tel-aviv/215854/current-weather/215854?lang=en-us",
-        LocalObservationDateTime: "2021-09-10T13:35:00+03:00",
-        MobileLink:
-          "http://www.accuweather.com/en/il/tel-aviv/215854/current-weather/215854?lang=en-us",
-        PrecipitationType: null,
-        Temperature: {
-          Imperial: { Unit: "F", UnitType: 18, Value: 87 },
-          Metric: { Unit: "C", UnitType: 17, Value: 30.4 },
-        },
-
-        WeatherIcon: 3,
-        WeatherText: "Partly sunny",
-      };
+      const weather = await getCurrentWeather(favorite.key);
       setCurrentWeather(weather);
     } catch (error) {
       console.log(error);
     }
   };
 
+  //remove city from favorite and update local storage
   const removeCity = () => {
     if (favorites) {
       const tmpFavorites = favorites.filter(
@@ -57,12 +45,9 @@ const Favorite = ({ favorite, favorites, setFavorites }) => {
     }
   };
 
-  useEffect(() => {
-    loadCurrentWeather();
-  }, []);
-
   if (!currentWeather) return null;
 
+  //Display the component only if currentWeather exsists
   return (
     <div className="favorite">
       <div className="card">

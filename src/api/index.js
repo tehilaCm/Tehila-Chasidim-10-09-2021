@@ -40,3 +40,17 @@ export const fiveDaysOfDailyForecasts = async (key) => {
     console.log(error);
   }
 };
+
+export const geoPositionSearch = async (latLon) => {
+  const base =
+    "http://dataservice.accuweather.com/locations/v1/cities/geoposition/search";
+  const query = `?apikey=${process.env.REACT_APP_API_KEY}&q=${latLon}`;
+  try {
+    const response = await fetch(base + query);
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};

@@ -1,7 +1,9 @@
+//convert action.type to upper case
 function convertActionName(actionName) {
   return actionName.replace(/([A-Z])/g, "_$1").toUpperCase();
 }
 
+//check if the action exsist and return action object if it's not
 const actions = new Proxy(
   {},
   {

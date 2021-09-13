@@ -2,19 +2,25 @@ import React from "react";
 import { Link } from "react-router-dom";
 import $ from "jquery";
 
-import "./navbar.css"
+import "./navbar.css";
 
 const Navbar = () => {
   const closeNav = () => {
+    //Closing the navbar manually when clicking a Link within the nav on smaller screens
     let display = $(".collapse").css("display");
+    //Changing display to "none"
     if (display === "block") $("#navbarNav").hide("slow");
   };
 
   return (
     <div>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <nav className="navbar navbar-expand-lg navbar-light nav">
         <div className="container-fluid">
-          <Link className="navbar-brand nav-brand" to="/" onClick={() => closeNav()}>
+          <Link
+            className="navbar-brand nav-brand"
+            to="/"
+            onClick={() => closeNav()}
+          >
             <i>
               <b>Weather</b>
             </i>

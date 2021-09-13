@@ -1,19 +1,16 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 import { BsSearch } from "react-icons/bs";
 import toast from "react-hot-toast";
 import { useLocation, useHistory } from "react-router-dom";
-import {
-  getCity,
-  getCurrentWeather,
-  fiveDaysOfDailyForecasts,
-} from "../../api";
+
+import useCityWeather from "../../utility/useCityWeather";
+
 import CurrentWeather from "../currentWeather/CurrentWeather";
 import DailyForecasts from "../dailyForecasts/DailyForecasts";
 import DegreesFormat from "../degreesFormat/DegreesFormat";
-
-import useCityWeather from "../../utility/useCityWeather";
+import ThemeBtn from "../themeBtn/ThemeBtn";
 
 import "./home.css";
 
@@ -34,19 +31,37 @@ const Home = () => {
   const history = useHistory();
 
   useEffect(() => {
+    //User will be redirect to home page after clicking a favorite city
+    //In this case we'll have the city name as a param in the URL
     const cityName = query.get("cityName");
     if (cityName) {
       getCityWeather(cityName);
+      //Clear URL from the city param
       query.delete("cityName");
       history.replace({
         search: query.toString(),
       });
-    } else getCityWeather("Tel Aviv");
+    } else {
+      //Display to the user by default his current location by reciving
+      //latitude and longitude from geolocation
+      function success(pos) {
+        let crd = pos.coords;
+        getCityWeather(null, `${crd.latitude},${crd.longitude}`);
+      }
+
+      function error(err) {
+        //In case the geolocation failed to get lat/lon
+        getCityWeather("Tel Aviv");
+      }
+
+      navigator.geolocation.getCurrentPosition(success, error);
+    }
   }, []);
 
   const handelSubmit = async (e) => {
     e.preventDefault();
 
+    //Toast in case the user submitted empty string
     const searchedCity = cityInput.trim();
     if (!searchedCity) {
       return toast.error("You Must Type A City");
@@ -57,6 +72,8 @@ const Home = () => {
     setCityInput("");
   };
 
+  //Searching will be done in English letters only
+  //Converting non English letters by empty string
   const handleOnChange = (e) => {
     let val = e.target.value.replace(/[^\x00-\x7F]+/gi, "");
     setCityInput(val);
@@ -64,7 +81,10 @@ const Home = () => {
 
   return (
     <div className="home">
-      <DegreesFormat />
+      <div className="top-container">
+        <DegreesFormat />
+        <ThemeBtn />
+      </div>
       <form className="search-form center" onSubmit={handelSubmit}>
         <BsSearch className="serach-icon" />
         <input

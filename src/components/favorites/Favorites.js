@@ -13,13 +13,12 @@ const Favorites = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const clearFavorites = () => {
-    localStorage.clear();
+    localStorage.setItem("favorites", JSON.stringify([]));
     setFavorites([]);
     setModalIsOpen(true);
   };
 
-  //   localStorage.setItem("favorites", JSON.stringify(tmpFavorites));
-
+  //Dispaly NoFavorites components in case there are no favorites 
   if (!favorites || favorites.length === 0) return <NoFavorites />;
 
   return (

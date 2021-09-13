@@ -6,6 +6,7 @@ import actions from "../../redux/actions";
 
 import "./degreesFormat.css";
 
+//This component allows the user to choose if degrees will be displayed in fahrenheit or celsius
 const DegreesFormat = () => {
   const isCelsius = useSelector((state) => state.generalData.isCelsius);
   const dispatch = useDispatch();

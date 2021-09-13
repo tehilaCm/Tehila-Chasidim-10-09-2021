@@ -7,6 +7,7 @@ import "./clearFavoritesPopup.css";
 
 Modal.setAppElement("#root");
 
+//Popup that's displayed after clicking the "clear favorites" button to delete them all
 const ClearFavoritesPopup = ({
   modalIsOpen,
   setModalIsOpen,

@@ -26,6 +26,7 @@ const CurrentWeather = ({ weather, city }) => {
   useEffect(() => {
     setFavorites(JSON.parse(localStorage.getItem("favorites")));
     if (favorites && favorites.length > 0) {
+      //check if the city is favorite
       const res = favorites.find((item) => item.name === city.name);
       if (res) {
         setIsFavorite(true);
@@ -41,15 +42,17 @@ const CurrentWeather = ({ weather, city }) => {
     let tmpFavorites = [];
     const favorites = JSON.parse(localStorage.getItem("favorites"));
     if (!isFavorite) {
+      //add city to favorites
       if (favorites) tmpFavorites = [...favorites, city];
       else tmpFavorites = [city];
-      localStorage.setItem("favorites", JSON.stringify(tmpFavorites));
       setIsFavorite(true);
     } else {
-      if (favorites) tmpFavorites = favorites.filter((item) => item.name != city.name);
-      localStorage.setItem("favorites", JSON.stringify(tmpFavorites));
+      //remove city from favorites
+      if (favorites)
+        tmpFavorites = favorites.filter((item) => item.name != city.name);
       setIsFavorite(false);
     }
+    localStorage.setItem("favorites", JSON.stringify(tmpFavorites));
   };
 
   return (

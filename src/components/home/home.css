@@ -4,6 +4,12 @@
   margin-right: auto;
 }
 
+.home .top-container {
+  display: flex;
+  flex-wrap: wrap-reverse;
+  justify-content: space-between;
+}
+
 .home .search-form * {
   height: 40px;
   padding: 6px 12px;

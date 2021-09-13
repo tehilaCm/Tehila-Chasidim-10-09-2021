@@ -3,86 +3,42 @@ import { useDispatch } from "react-redux";
 
 import toast from "react-hot-toast";
 
-import { getCity, getCurrentWeather, fiveDaysOfDailyForecasts } from "../api";
+import {
+  getCity,
+  getCurrentWeather,
+  fiveDaysOfDailyForecasts,
+  geoPositionSearch,
+} from "../api";
 import actions from "../redux/actions";
 
 const useCityWeather = () => {
   const dispatch = useDispatch();
 
-  const getCityWeather = async (city) => {
+  //get city details, weather, five days of daily forecasts and updating the store
+  const getCityWeather = async (city, latLon) => {
     try {
       if (city) {
-          // const cityData = await getCity(city);
-        const cityData = {
-          AdministrativeArea: { ID: "TA", LocalizedName: "Tel Aviv" },
-          Country: { ID: "IL", LocalizedName: "Israel" },
-          Key: "215854",
-          LocalizedName: "Tel Aviv",
-          Rank: 31,
-          Type: "City",
-          Version: 1,
-        };
+        const cityData = await getCity(city);
         if (cityData === undefined) return toast.error("City Not Found");
         dispatch(
           actions.setCity({ name: cityData.LocalizedName, key: cityData.Key })
         );
 
-          // const weather = await getCurrentWeather(cityData.Key);
-        const weather = {
-          EpochTime: 1631270100,
-          HasPrecipitation: false,
-          IsDayTime: true,
-          Link: "http://www.accuweather.com/en/il/tel-aviv/215854/current-weather/215854?lang=en-us",
-          LocalObservationDateTime: "2021-09-10T13:35:00+03:00",
-          MobileLink:
-            "http://www.accuweather.com/en/il/tel-aviv/215854/current-weather/215854?lang=en-us",
-          PrecipitationType: null,
-          Temperature: {
-            Imperial: { Unit: "F", UnitType: 18, Value: 87 },
-            Metric: { Unit: "C", UnitType: 17, Value: 30.4 },
-          },
-
-          WeatherIcon: 3,
-          WeatherText: "Partly sunny",
-        };
+        const weather = await getCurrentWeather(cityData.Key);
         dispatch(actions.setCurrentWeather(weather));
-          // const forecasts = await fiveDaysOfDailyForecasts(cityData.Key);
-        const forecasts = {
-          DailyForecasts: [
-            {
-              Date: "2021-09-10T07:00:00+03:00",
-              Day: {
-                HasPrecipitation: false,
-                Icon: 3,
-                IconPhrase: "Partly sunny",
-                EpochDate: 1631246400,
-                Link: "http://www.accuweather.com/en/il/tel-aviv/215854/daily-weather-forecast/215854?day=1&lang=en-us",
-                MobileLink:
-                  "http://www.accuweather.com/en/il/tel-aviv/215854/daily-weather-forecast/215854?day=1&lang=en-us",
-              },
 
-              Night: {
-                HasPrecipitation: false,
-                Icon: 35,
-                IconPhrase: "Partly cloudy",
-              },
+        const forecasts = await fiveDaysOfDailyForecasts(cityData.Key);
+        const { DailyForecasts } = forecasts;
+        dispatch(actions.setForecasts(DailyForecasts));
+      } else if (latLon) {
+        const location = await geoPositionSearch(latLon);
+        const { Key } = location;
+        dispatch(actions.setCity({ name: location.LocalizedName, key: Key }));
 
-              Temperature: {
-                Maximum: {
-                  Unit: "F",
-                  UnitType: 18,
-                  Value: 84,
-                },
+        const weather = await getCurrentWeather(Key);
+        dispatch(actions.setCurrentWeather(weather));
 
-                Minimum: {
-                  Unit: "F",
-                  UnitType: 18,
-                  Value: 76,
-                },
-              },
-            },
-          ],
-        };
+        const forecasts = await fiveDaysOfDailyForecasts(Key);
         const { DailyForecasts } = forecasts;
         dispatch(actions.setForecasts(DailyForecasts));
       }

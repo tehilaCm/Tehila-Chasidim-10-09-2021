@@ -1,3 +1,8 @@
+.display-format {
+  margin: auto;
+  padding: 10px;
+}
+
 .display-format button {
   border: 1px solid #0d6efd;
   border-radius: 10%;
@@ -7,19 +12,21 @@
   background-color: #f3f3f3;
 }
 
-.display-format h5{
-  color: blue;
+.display-format h5 {
+  color: var(--text-color);
 }
 
 .display-format svg {
   margin-bottom: 3px;
 }
 
-.display-format {
-  margin: 2rem 0 0 2rem;
-}
-
 .display-format .chosen-format {
   background-color: #0d6efd;
   color: white;
+}
+
+@media (min-width: 300px) {
+  .display-format {
+    margin: 1rem 0 0 2rem;
+  }
 }

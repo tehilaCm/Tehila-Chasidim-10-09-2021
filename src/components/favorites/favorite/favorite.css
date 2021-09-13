@@ -3,9 +3,13 @@
   text-align: center;
 }
 
+.favorite .card {
+  background-color: var(--card-background-color);
+}
+
 .favorite a {
   text-decoration: none;
-  color: #525252;
+  color: var(--card-text-color);
 }
 
 .favorite .degreesFormat {
@@ -14,6 +18,6 @@
 
 .favorite .trash-icon {
   margin: 1rem auto;
-  color: red;
+  color: var(--trash-icon-color);
   cursor: pointer;
 }
