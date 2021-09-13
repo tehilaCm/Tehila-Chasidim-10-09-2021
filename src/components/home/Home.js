@@ -73,7 +73,7 @@ const Home = () => {
   };
 
   //Searching will be done in English letters only
-  //Converting non English letters by empty string
+  //Converting non English letters to empty string
   const handleOnChange = (e) => {
     let val = e.target.value.replace(/[^\x00-\x7F]+/gi, "");
     setCityInput(val);
@@ -106,20 +106,3 @@ const Home = () => {
 
 export default Home;
 
-/*
- 
-
-
- Array(5)
-0: {Date: "2021-09-10T07:00:00+03:00", EpochDate: 1631246400, Temperature: {…}, Day: {…}, Night: {…}, …}
-1: {Date: "2021-09-11T07:00:00+03:00", EpochDate: 1631332800, Temperature: {…}, Day: {…}, Night: {…}, …}
-2: {Date: "2021-09-12T07:00:00+03:00", EpochDate: 1631419200, Temperature: {…}, Day: {…}, Night: {…}, …}
-3: {Date: "2021-09-13T07:00:00+03:00", EpochDate: 1631505600, Temperature: {…}, Day: {…}, Night: {…}, …}
-4: {Date: "2021-09-14T07:00:00+03:00", EpochDate: 1631592000, Temperature: {…}, Day: {…}, Night: {…}, …}
-length: 5
-
-
-
-0:
-
-*/
